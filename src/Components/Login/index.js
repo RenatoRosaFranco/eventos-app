@@ -6,14 +6,15 @@ import 'firebase/auth';
 const Login = () => {
   const [email, setEmail]  = useState();
   const [password, setPassword] = useState();
+  const [message, setMessage] = useState();
 
   function logIn() {
     firebase_client
       .auth()
         .signInWithEmailAndPassword(email, password).then(result => {
-          alert('Usuario logado');
+          setMessage('sucesso');
         }).catch(error => {
-          alert(error);
+          setMessage('error');
         });
   }
 
@@ -47,23 +48,8 @@ const Login = () => {
         </button>
 
         <div className="msg-login text-white text-center my-5">
-          <span>
-            <strong>
-              Wow!
-            </strong>
-            Você está conectado
-            &#128526;
-          </span>
-          
-          <br/>
-          
-          <span>
-            <strong>
-              Ops!
-            </strong>
-            Verifique se a senha ou usuário estão corretos
-            &#128546;
-          </span>
+          { message == 'sucesso' && <span> <strong> Wow! </strong> Você está conectado &#128526;</span> }
+          { message == 'error' && <span> <strong> Ops! </strong> Verifique se a senha ou usuário estão corretos &#128546; </span> }
         </div>
 
         <div className="opcoes-login mt-5 text-center">
