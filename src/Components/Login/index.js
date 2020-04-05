@@ -1,6 +1,7 @@
-import './login.css';
-import React, { useState } from 'react';
-import firebase_client from '../../config/firebase';
+import  './login.css';
+import  React, { useState } from 'react';
+import  firebase_client from '../../config/firebase';
+import { Link } from 'react-router-dom';
 import 'firebase/auth';
 
 const Login = () => {
@@ -12,8 +13,8 @@ const Login = () => {
     firebase_client
       .auth()
         .signInWithEmailAndPassword(email, password).then(result => {
-          setMessage('sucesso');
-        }).catch(error => {
+          setMessage('success');
+        }).catch((error) => {
           setMessage('error');
         });
   }
@@ -48,14 +49,14 @@ const Login = () => {
         </button>
 
         <div className="msg-login text-white text-center my-5">
-          { message == 'sucesso' && <span> <strong> Wow! </strong> Você está conectado &#128526;</span> }
+          { message == 'success' && <span> <strong> Wow! </strong> Você está conectado &#128526;</span> }
           { message == 'error' && <span> <strong> Ops! </strong> Verifique se a senha ou usuário estão corretos &#128546; </span> }
         </div>
 
         <div className="opcoes-login mt-5 text-center">
-          <a href="" className="mx-2">Recuper Senha</a>
+          <Link to='' className="mx-2">Recuper Senha</Link>
           <span className="text-white">&#9733;</span>
-          <a href="" className="mx-2">Quero Cadastro</a>
+          <Link to='register' className="mx-2">Quero Cadastrar</Link>
         </div>
       </form>
     </div>
